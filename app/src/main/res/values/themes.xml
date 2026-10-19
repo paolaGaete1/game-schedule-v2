@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema base neutro (sin estilo final). Solo para la Activity. -->
+    <style name="Theme.GameScheduleV2" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
