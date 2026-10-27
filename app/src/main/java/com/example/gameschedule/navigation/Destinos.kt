@@ -42,3 +42,25 @@ sealed class Destino(
         val tabs: List<Destino> = listOf(Inicio, MisHorarios, Torneos)
     }
 }
+
+/**
+ * Rutas de las pantallas secundarias (formularios y detalle).
+ *
+ * Estas pantallas se abren desde las pestañas y ocultan la Bottom Navigation Bar.
+ */
+object Rutas {
+    const val NUEVO_HORARIO = "nuevo_horario"
+    const val NUEVO_TORNEO = "nuevo_torneo"
+    const val TORNEO_DETALLE = "torneo_detalle"
+
+    /** Ruta del detalle de un torneo concreto. */
+    fun detalleTorneo(torneoId: String) = "$TORNEO_DETALLE/$torneoId"
+
+    /** Extrae el id de una ruta de detalle, o null si no lo es. */
+    fun idDeDetalle(ruta: String?): String? =
+        if (ruta != null && ruta.startsWith("$TORNEO_DETALLE/")) {
+            ruta.removePrefix("$TORNEO_DETALLE/")
+        } else {
+            null
+        }
+}

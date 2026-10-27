@@ -13,6 +13,7 @@ import java.util.UUID
  * @property fecha Día del torneo.
  * @property hora Hora de inicio.
  * @property ubicacion Lugar o plataforma (ej. "Online", "Madrid - Arena").
+ * @property notas Comentarios libres (opcional).
  * @property rondas Rondas del torneo (vacío mientras no se configuren).
  */
 data class Torneo(
@@ -22,20 +23,21 @@ data class Torneo(
     val fecha: LocalDate,
     val hora: LocalTime,
     val ubicacion: String,
+    val notas: String = "",
     val rondas: List<Ronda> = emptyList()
 )
 
 /**
  * Ronda dentro de un torneo.
  *
- * @property numero Número u orden de la ronda (1, 2, 3...).
- * @property nombre Nombre visible (ej. "Cuartos", "Semifinal").
- * @property rival Rival de la ronda (si se conoce).
- * @property resultado Resultado de la ronda (si ya se jugó).
+ * @property numero Orden de la ronda (1, 2, 3...).
+ * @property nombre Nombre visible (ej. "Cuartos de final", "Semifinales").
+ * @property fecha Día en el que se juega la ronda.
+ * @property hora Hora de inicio de la ronda.
  */
 data class Ronda(
     val numero: Int,
     val nombre: String,
-    val rival: String? = null,
-    val resultado: String? = null
+    val fecha: LocalDate,
+    val hora: LocalTime
 )
