@@ -3,6 +3,8 @@ package com.example.gameschedule
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -26,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gameschedule.data.AppViewModel
 import com.example.gameschedule.navigation.Destino
 import com.example.gameschedule.navigation.Rutas
+import com.example.gameschedule.ui.theme.MoradoPrimario
 import com.example.gameschedule.ui.screens.detalletorneo.DetalleTorneoScreen
 import com.example.gameschedule.ui.screens.horarios.HorariosScreen
 import com.example.gameschedule.ui.screens.inicio.InicioScreen
@@ -40,10 +43,16 @@ import com.example.gameschedule.ui.screens.torneos.TorneosScreen
  *   `saveState` / `restoreState` y no apilan copias gracias a `launchSingleTop`.
  * - Las rutas secundarias (formularios y detalle) ocultan la barra inferior
  *   y muestran una TopAppBar centrada con botón "Atrás".
+ * - La TopAppBar de las pestañas incluye un botón para alternar entre
+ *   modo claro y modo oscuro ([modoOscuro] / [onAlternarTema]).
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameScheduleApp(appViewModel: AppViewModel = viewModel()) {
+fun GameScheduleApp(
+    modoOscuro: Boolean,
+    onAlternarTema: () -> Unit,
+    appViewModel: AppViewModel = viewModel()
+) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val rutaActual = backStackEntry?.destination?.route
@@ -78,6 +87,23 @@ fun GameScheduleApp(appViewModel: AppViewModel = viewModel()) {
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Medium
                         )
+                    },
+                    actions = {
+                        IconButton(onClick = onAlternarTema) {
+                            Icon(
+                                imageVector = if (modoOscuro) {
+                                    Icons.Filled.LightMode
+                                } else {
+                                    Icons.Filled.DarkMode
+                                },
+                                contentDescription = if (modoOscuro) {
+                                    "Cambiar a modo claro"
+                                } else {
+                                    "Cambiar a modo oscuro"
+                                },
+                                tint = MoradoPrimario
+                            )
+                        }
                     }
                 )
 

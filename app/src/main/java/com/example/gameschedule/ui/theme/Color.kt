@@ -1,32 +1,37 @@
 package com.example.gameschedule.ui.theme
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 /**
- * Paleta básica de la app (tomada de los mockups).
- * Los colores definitivos se ajustarán en una fase posterior.
+ * Paleta semántica de la app.
+ *
+ * Estas propiedades son @Composable y leen el [MaterialTheme.colorScheme] activo,
+ * por lo que cambian automáticamente entre modo claro y modo oscuro.
+ * No se deben usar fuera de funciones compositivas.
  */
 
-/** Color principal (botones, textos de acento, pestaña activa). */
-val MoradoPrimario = Color(0xFF5B5FE9)
+/** Color principal (botones rellenos, acentos de texto, pestaña activa). */
+val MoradoPrimario: Color
+    @Composable get() = MaterialTheme.colorScheme.primary
 
-/** Variante del primario para estados presionados. */
-val MoradoOscuro = Color(0xFF464AC4)
+/** Acciones destructivas ("Borrar") y pin de ubicación. */
+val RojoBorrar: Color
+    @Composable get() = MaterialTheme.colorScheme.error
 
-/** Acciones destructivas ("Borrar") y ubicación en el mapa. */
-val RojoBorrar = Color(0xFFEF4444)
-
-/** Fondo general de las pantallas. */
-val FondoApp = Color(0xFFF7F7F9)
-
-/** Borde suave de las tarjetas. */
-val BordeCard = Color(0xFFE7E7EC)
-
-/** Texto principal. */
-val TextoPrincipal = Color(0xFF111827)
+/** Texto principal (títulos y contenido sobre fondo). */
+val TextoPrincipal: Color
+    @Composable get() = MaterialTheme.colorScheme.onBackground
 
 /** Texto secundario (fechas, notas, placeholders). */
-val TextoSecundario = Color(0xFF6B7280)
+val TextoSecundario: Color
+    @Composable get() = MaterialTheme.colorScheme.onSurfaceVariant
 
-/** Botón deshabilitado. */
-val GrisDeshabilitado = Color(0xFFD1D5DB)
+/** Borde suave de tarjetas y campos de formulario. */
+val BordeCard: Color
+    @Composable get() = MaterialTheme.colorScheme.outlineVariant
+
+/** Fondo de los botones deshabilitados ("Crear horario", "Agregar ronda"). */
+val GrisDeshabilitado: Color
+    @Composable get() = MaterialTheme.colorScheme.surfaceVariant
